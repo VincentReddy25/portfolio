@@ -73,7 +73,7 @@ a:hover {
   align-items: center;
   justify-content: space-between;
   padding: 0 10px 0 30px;
-  display: none; 
+  display: none;
 }
 
 .hamburger-menu {
@@ -123,7 +123,8 @@ a:hover {
 .menu-links li {
   list-style: none;
 }
-.menu-links li a{
+
+.menu-links li a {
   background: white;
 }
 
@@ -178,18 +179,20 @@ section {
   height: 80vh;
 }
 
-.section__pic-container{
+.section__pic-container {
   display: flex;
   align-items: center;
 }
 
 .section__pic-container img {
-  width: 22rem;
-  height:  22rem;
+  width: 20rem;
+  height: 20rem;
   object-fit: cover;
   border-radius: 50%;
-  border: 7px solid black;
+  outline: 10px solid black;
+  outline-offset: 20px;
   background: #00000018;
+  box-shadow: 0 0 20px 1px gray;
 }
 
 .section__text {
@@ -355,6 +358,7 @@ section {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
+  place-items: center;
 }
 
 article {
@@ -395,10 +399,11 @@ article .icon {
   border-color: rgb(163, 163, 163);
 }
 
-.about-containers-projects{
+.about-containers-projects {
   overflow-x: scroll;
 }
-.article-container-projects{
+
+.article-container-projects {
   display: flex;
 }
 
@@ -457,27 +462,44 @@ footer p {
   text-align: center;
 }
 
-.night_fury{
+.night_fury {
   position: absolute;
   bottom: -100px;
   right: -200px;
+  z-index: -100;
 }
 
-body{
- overflow-x: hidden;
+body {
+  overflow-x: hidden;
 }
-footer{
+
+footer {
   position: relative;
 }
-.night_fury_animated{
+
+.night_fury_animated {
   position: absolute;
   right: -5rem;
   top: -20rem;
 }
 
-.light_fury{
+.light_fury {
   width: 300px;
   position: absolute;
   left: -165px;
   top: 5rem;
 }
+
+
+.animate {
+  opacity: 0;
+  filter: blur(3px);
+  transition: ease-out 1s;
+}
+
+.show {
+  opacity: 1;
+  filter: blur(0);
+}
+
+

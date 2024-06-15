@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>vincent - portfolio</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
   </head>
@@ -36,11 +37,13 @@
         </div>
       </div>
     </nav>
-    <section id="profile">
-      <div class="section__pic-container">
+
+    <section class="animate" id="profile">
+
+      <div class="section__pic-container" data-aos="fade-right" data-aos-duration="3000">
         <img src="./assets/profile-pic_bgRem.png" alt="profile" />
       </div>
-      <div class="section__text">
+      <div class="section__text" data-aos="fade-left" data-aos-duration="3000">
         <p class="section__text__p1">Hello, I'm</p>
         <h1 class="title">Vincent Reddy</h1>
         <p class="section__text__p2">Frontend Developer</p>
@@ -55,32 +58,18 @@
             Contact Info
           </button>
         </div>
-        <div id="socials-container">
-          <a target="_blank" href="https://www.linkedin.com/in/vincentreddy/">
-            <img src="./assets/linkedin.png" alt="My LinkedIn profile" class="icon"/>
-          </a>
-          <a target="_blank" href="https://github.com/VincentReddy25/">
-            <img src="./assets/github.png" alt="My Github profile" class="icon" />
-          </a>
-        </div>
       </div>
       <img class="night_fury" src="./assets/night_fury/night_fury1.png" alt="">
     </section>
-    <section id="about">
-      <img src="./assets/night_fury/light_fury.png" class="light_fury" alt="">
+
+    <section class="animate" id="about">
+      <img src="./assets/night_fury/light_fury.png" class="light_fury" alt="light_fury">
       <p class="section__text__p1">Get To Know More</p>
       <h1 class="title">About Me</h1>
       <div class="section-container">
-        <!-- <div class="section__pic-container">
-          <img
-            src="./assets/about-pic.png"
-            alt="Profile picture"
-            class="about-pic"
-          />
-        </div> -->
         <div class="about-details-container">
           <div class="about-containers">
-            <div class="details-container">
+            <div class="details-container" data-aos="flip-left" data-aos-duration="3000">
               <img
                 src="./assets/experience.png"
                 alt="Experience icon"
@@ -88,21 +77,21 @@
               />
               <h3>Experience</h3>
               <p>1+ years <br />Frontend Development &</p>
-              <p>Freelancer at Upwork (a month)</p>
+              <p>Freelancer at Upwork (4 month)</p>
             </div>
-            <div class="details-container">
+            <div class="details-container" data-aos="flip-right" data-aos-duration="3000">
               <img
                 src="./assets/education.png"
                 alt="Education icon"
                 class="icon"
               />
               <h3>Education</h3>
-              <p>B.Tech computer Science<br /></p>
+              <p>B.Tech computer Science - 2024<br /></p>
             </div>
           </div>
           <div class="text-container">
             <p>
-              ❖ Frontend Designer & Developer with 1+ years of Personal experiences.
+              ❖ Frontend Designer & Developer with a good skill.
               ❖ Experience with Cross Browser Compatibility issues. <br>
               ❖ Proficiency in responsive Web Design & analyzing and fixing UI bugs.
               ❖ Intermediate in code optimization and improving performance. 
@@ -117,14 +106,14 @@
         onclick="location.href='./#experience'"
       />
     </section>
-    <section id="experience">
+
+    <section class="animate" id="experience">
       <p class="section__text__p1">Explore My</p>
       <h1 class="title">Experience</h1>
-      <div class="experience-details-container">
+      <div class="experience-details-container" data-aos="zoom-in-up" data-aos-duration="3000">
         <div class="about-containers">
           <div class="details-container">
-            <h2 class="experience-sub-title">Frontend Development</h2>
-            <div class="article-container">
+            <div class="article-container" >
               <article>
                 <img
                   src="./assets/checkmark.png"
@@ -133,7 +122,6 @@
                 />
                 <div>
                   <h3>HTML</h3>
-                  <p>Experienced</p>
                 </div>
               </article>
               <article>
@@ -144,7 +132,6 @@
                 />
                 <div>
                   <h3>CSS</h3>
-                  <p>Experienced</p>
                 </div>
               </article>
               <article>
@@ -155,7 +142,6 @@
                 />
                 <div>
                   <h3>JavaScript</h3>
-                  <p>Intermediate</p>
                 </div>
               </article>
               <article>
@@ -165,52 +151,7 @@
                   class="icon"
                 />
                 <div>
-                  <h3>TypeScript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>SASS</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Material UI</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Figma</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Canva</h3>
-                  <p>Basic</p>
+                  <h3>SCSS</h3>
                 </div>
               </article>
               <article>
@@ -221,7 +162,6 @@
                 />
                 <div>
                   <h3>React</h3>
-                  <p>Intermediate</p>
                 </div>
               </article>
               <article>
@@ -232,14 +172,28 @@
                 />
                 <div>
                   <h3>Angular</h3>
-                  <p>Intermediate</p>
                 </div>
               </article>
-            </div>
-          </div>
-          <div class="details-container">
-            <h2 class="experience-sub-title">Backend Development</h2>
-            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Figma</h3>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Canva</h3>
+                </div>
+              </article>
               <article>
                 <img
                   src="./assets/checkmark.png"
@@ -248,29 +202,6 @@
                 />
                 <div>
                   <h3>MySQL</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Node JS</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Express JS</h3>
-                  <p>Intermediate</p>
                 </div>
               </article>
               <article>
@@ -281,7 +212,6 @@
                 />
                 <div>
                   <h3>Git</h3>
-                  <p>Intermediate</p>
                 </div>
               </article>
             </div>
@@ -295,7 +225,8 @@
         onclick="location.href='./#contact'"
       />
     </section>
-    <section id="projects">
+
+    <section class="animate" id="projects">
       <p class="section__text__p1">Browse My Recent</p>
       <h1 class="title">Projects</h1>
       <div class="experience-details-container">
@@ -453,7 +384,8 @@
         onclick="location.href='./#contact'"
       />
     </section>
-    <section id="contact">
+
+    <section class="animate" id="contact" data-aos="flip-down" data-aos-duration="3000">
       <p class="section__text__p1">Get in Touch</p>
       <h1 class="title">Contact Me</h1>
       <div class="contact-info-upper-container">
@@ -475,7 +407,8 @@
         </div>
       </div>
     </section>
-    <footer>
+
+    <footer class="animate" >
       <div>
         <nav>
           <div class="nav-links-container">
@@ -493,6 +426,13 @@
     </footer>
 
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
     <script src="script.js"></script>
+    
   </body>
 </html>
+
+
