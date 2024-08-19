@@ -1,7 +1,7 @@
 export default function Navbar() {
   return (
     <>
-      <div className="flex md:justify-between md:flex-row flex-col items-center md:h-20 relative z-50 bg-white px-20 shadow-md">
+      <div className="flex md:justify-between md:flex-row flex-col items-center md:h-20 fixed w-full z-50 bg-white px-20 shadow-md">
         <h1 className="font-bold text-2xl">vincent.dev</h1>
         <ul className="flex gap-10 text-xl font-bold py-4">
           <li>
