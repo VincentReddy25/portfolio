@@ -7,9 +7,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <section id='body' className='bg-gray-50'>
-        <Home />
-      </section>
+      <Home />
     </>
   );  
 }
