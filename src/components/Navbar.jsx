@@ -1,20 +1,29 @@
+
+import { Routes, Route, Link } from "react-router-dom";
+import Home from './Home'
+import About from './About'
+
 export default function Navbar() {
   return (
     <>
-      <div className="flex md:justify-between md:flex-row flex-col items-center md:h-20 fixed w-full z-50 bg-white px-20 shadow-md">
+      <div className="flex md:justify-between md:flex-row flex-col items-center md:h-20 z-50 bg-white px-20 shadow-md">
         <h1 className="font-bold text-2xl">vincent.dev</h1>
         <ul className="flex gap-10 text-xl font-bold py-4">
           <li>
-            <a href="#Home" className="hover:text-blue-600">Home</a>
+            <Link to="Home" className="hover:text-blue-600">Home</Link>
           </li>
           <li>
-            <a href="#Projects" className="hover:text-blue-600">Projects</a>
-          </li>
-          <li>
-            <a href="#About" className="hover:text-blue-600">About</a>
+            <Link to="About" className="hover:text-blue-600">About</Link>
           </li>
         </ul>
       </div>
+
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Home" element={<Home />} />
+        <Route path="/About" element={<About />} />
+      </Routes>
 
     </>
   )
