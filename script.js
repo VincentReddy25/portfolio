@@ -81,15 +81,15 @@
     return `
       <section class="hero">
         <div class="container">
-          <h2>Hello — I'm ${user.name}.</h2>
+          <h2>Hello — I'm ${user.name.split(' ')[0]}.</h2>
           <p class="lead">${user.summary}</p>
           <p class="contact-small">
             <a href="mailto:${user.email}">${user.email}</a>
             • <a href="${user.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
           </p>
           <div class="cta">
-            <a class="btn" href="#projects">View projects</a>
-            <a class="btn outline" href="#contact">Contact</a>
+            <a class="btn" href="#projects">View my work</a>
+            <a class="btn outline" href="#contact">Get in touch</a>
           </div>
         </div>
       </section>
