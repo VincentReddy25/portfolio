@@ -1,22 +1,346 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vincent Reddy — Portfolio</title>
-
-  <!-- Link to compiled CSS (compile styles.scss to styles.css) -->
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vincent Reddy - Full Stack Developer</title>
+    <meta name="description" content="Portfolio of Vincent Reddy, a passionate full-stack developer specializing in modern web technologies and clean code.">
+    <meta name="author" content="Vincent Reddy">
+    
+    <meta property="og:title" content="Vincent Reddy - Full Stack Developer Portfolio">
+    <meta property="og:description" content="Explore my portfolio showcasing modern web development projects and skills.">
+    <meta property="og:type" content="website">
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-  <!-- Page content is rendered by script.js -->
-  <noscript>
-    <p style="padding:1rem;max-width:900px;margin:2rem auto;color:#c00;">
-      This portfolio requires JavaScript to render. Please enable JavaScript in your browser.
-    </p>
-  </noscript>
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <button class="nav-logo" onclick="scrollToTop()">VR</button>
+            
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <button class="btn btn-primary btn-sm">Resume</button>
+            </div>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
 
-  <!-- Main JS (renders the page) -->
-  <script src="script.js" defer></script>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="#about" class="mobile-link" onclick="closeMobileMenu()">About</a>
+        <a href="#skills" class="mobile-link" onclick="closeMobileMenu()">Skills</a>
+        <a href="#projects" class="mobile-link" onclick="closeMobileMenu()">Projects</a>
+        <a href="#contact" class="mobile-link" onclick="closeMobileMenu()">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content fade-in-up">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    Hi, I'm <span class="gradient-text">Vincent Reddy</span>
+                </h1>
+                <p class="hero-subtitle">Full Stack Developer</p>
+                <p class="hero-description">
+                    Crafting beautiful, performant web experiences with modern technologies
+                </p>
+            </div>
+
+            <div class="hero-buttons fade-in">
+                <button class="btn btn-primary btn-lg">
+                    <i data-lucide="mail"></i>
+                    Get In Touch
+                </button>
+                <button class="btn btn-outline btn-lg">View Projects</button>
+            </div>
+
+            <div class="social-links scale-in">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <i data-lucide="github"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <i data-lucide="linkedin"></i>
+                </a>
+                <a href="mailto:contact@example.com" class="social-link">
+                    <i data-lucide="mail"></i>
+                </a>
+            </div>
+
+            <div class="scroll-indicator">
+                <i data-lucide="arrow-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title">About Me</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-text fade-in-up">
+                    <p class="about-paragraph">
+                        I'm a passionate full-stack developer with a keen eye for design and a love for 
+                        creating seamless user experiences. With expertise in modern web technologies, 
+                        I bring ideas to life through clean code and thoughtful design.
+                    </p>
+                    <p class="about-paragraph">
+                        When I'm not coding, you'll find me exploring new technologies, contributing to 
+                        open-source projects, or sharing knowledge with the developer community.
+                    </p>
+                </div>
+
+                <div class="highlights-grid slide-in-right">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <i data-lucide="code-2"></i>
+                        </div>
+                        <div class="highlight-content">
+                            <h3 class="highlight-title">Clean Code</h3>
+                            <p class="highlight-description">Writing maintainable, scalable solutions with best practices</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <i data-lucide="palette"></i>
+                        </div>
+                        <div class="highlight-content">
+                            <h3 class="highlight-title">Design Focus</h3>
+                            <p class="highlight-description">Creating intuitive interfaces that users love</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <i data-lucide="rocket"></i>
+                        </div>
+                        <div class="highlight-content">
+                            <h3 class="highlight-title">Performance</h3>
+                            <p class="highlight-description">Optimizing for speed and efficiency</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section section-alt">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card scale-in">
+                    <h3 class="skill-category">Frontend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">Vue.js</span>
+                    </div>
+                </div>
+
+                <div class="skill-card scale-in" style="animation-delay: 0.1s">
+                    <h3 class="skill-category">Backend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">GraphQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-card scale-in" style="animation-delay: 0.2s">
+                    <h3 class="skill-category">Tools & Others</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">REST APIs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card scale-in">
+                    <div class="project-header">
+                        <h3 class="project-title">E-Commerce Platform</h3>
+                        <p class="project-description">
+                            A full-featured online store with cart, checkout, and admin dashboard
+                        </p>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">PostgreSQL</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-outline btn-sm">
+                                <i data-lucide="github"></i>
+                                Code
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i data-lucide="external-link"></i>
+                                Live
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scale-in" style="animation-delay: 0.1s">
+                    <div class="project-header">
+                        <h3 class="project-title">Task Management App</h3>
+                        <p class="project-description">
+                            Collaborative project management tool with real-time updates
+                        </p>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Next.js</span>
+                            <span class="project-tag">TypeScript</span>
+                            <span class="project-tag">Supabase</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-outline btn-sm">
+                                <i data-lucide="github"></i>
+                                Code
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i data-lucide="external-link"></i>
+                                Live
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scale-in" style="animation-delay: 0.2s">
+                    <div class="project-header">
+                        <h3 class="project-title">Weather Dashboard</h3>
+                        <p class="project-description">
+                            Beautiful weather app with forecasts and interactive maps
+                        </p>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">Tailwind</span>
+                            <span class="project-tag">Weather API</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-outline btn-sm">
+                                <i data-lucide="github"></i>
+                                Code
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i data-lucide="external-link"></i>
+                                Live
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-alt">
+        <div class="container-sm">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">
+                    I'm always open to new opportunities and collaborations
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-card scale-in">
+                    <div class="contact-icon">
+                        <i data-lucide="mail"></i>
+                    </div>
+                    <div class="contact-content">
+                        <h3 class="contact-title">Email</h3>
+                        <a href="mailto:contact@example.com" class="contact-link">
+                            contact@example.com
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-card scale-in" style="animation-delay: 0.1s">
+                    <div class="contact-icon">
+                        <i data-lucide="map-pin"></i>
+                    </div>
+                    <div class="contact-content">
+                        <h3 class="contact-title">Location</h3>
+                        <p class="contact-text">Available for remote work worldwide</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-cta fade-in">
+                <button class="btn btn-primary btn-lg">
+                    <i data-lucide="mail"></i>
+                    Send Message
+                </button>
+
+                <div class="social-links">
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                © <span id="year"></span> Vincent Reddy. Built with HTML, CSS & JavaScript.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>

@@ -1,61 +1,13 @@
-// script.js - injects a simple single-page portfolio and handles theme, projects and modal
-(function(){
-  const user = {
-    name: 'Vincent Reddy Thanugundla',
-    title: 'Software Engineer',
-    company: 'CV Corporate Services Pvt. Ltd.',
-    email: 'vincentreddy25@gmail.com',
-    linkedin: 'https://www.linkedin.com/in/vincent-reddy/',
-    summary: 'Python Full Stack & System Design engineer. JavaScript, React, Tailwind CSS enthusiast. Building clean, performant front-end experiences.'
-  };
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
 
-  const projects = [
-    {
-      title: 'Portfolio (this site)',
-      desc: 'A modern portfolio built with HTML, SCSS and vanilla JS.',
-      tech: ['HTML', 'SCSS', 'JavaScript'],
-      role: 'Frontend Engineer',
-      duration: '2 weeks',
-      year: 2025,
-      details: 'This portfolio is a single-page site built using SCSS and vanilla JavaScript. I implemented a theme-aware layout, responsive grid, and a small SPA-style renderer to keep the HTML minimal and maintainable.',
-      accomplishments: [
-        'Implemented modular renderer to keep HTML minimal',
-        'Added accessible modal for project details',
-        'Theme-aware CSS variables and responsive grid'
-      ],
-      repo: ''
-    },
-    {
-      title: 'Schedule Management Tool',
-      desc: 'A web UI to manage batches, trainers and room allocation with auto-apply grid logic.',
-      tech: ['React (planned)', 'Vanilla JS', 'SCSS', 'JSON'],
-      role: 'Frontend Developer',
-      duration: 'Ongoing',
-      year: 2025,
-      details: 'Schedule Management Tool: I created the front-end grid layout, JSON-driven batch allocation logic and trainer constraints. The UI allows admins to assign trainers to batches, prevents duplicate daily assignments and renders a responsive timetable.',
-      accomplishments: [
-        'Designed JSON schema for batches and trainers',
-        'Built auto-apply grid logic to auto-place trainers',
-        'Validation to prevent duplicate daily assignments for trainers'
-      ],
-      repo: ''
-    },
-    {
-      title: 'Dashboard Application',
-      desc: 'Admin dashboard and metrics UI built with React + Tailwind.',
-      tech: ['React', 'Tailwind CSS', 'Charts.js'],
-      role: 'Frontend Engineer',
-      duration: '1 month',
-      year: 2025,
-      details: 'Dashboard Application: I built charts, cards and data tables, hooked components to mock APIs, and optimized for accessibility and performance. Implemented reusable components and light/dark-friendly styling.',
-      accomplishments: [
-        'Created reusable chart and card components',
-        'Optimized rendering for large datasets',
-        'Improved accessibility for keyboard users'
-      ],
-      repo: ''
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
     }
-  ];
+});
 
   // store active button so we can remove its active state when modal closes
   let currentActiveBtn = null;
@@ -289,45 +241,172 @@
           btn.classList.add('active');
           setTimeout(() => openProjectModal(idx), 160);
         }
-      });
     });
+});
 
-    // Theme initialization (no visible toggle)
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const isDark = (savedTheme === 'dark') || (!savedTheme && prefersDark);
-    if(isDark) document.documentElement.setAttribute('data-theme','dark');
-    else document.documentElement.removeAttribute('data-theme');
+// Scroll to top
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
 
-    // Set a single primary color for the template (fixed)
-    document.documentElement.style.setProperty('--primary', '#0ea5a3');
+// Mobile menu toggle
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.classList.toggle('active');
+}
 
-    // contact form sends mailto (simple)
-    const form = document.getElementById('contactForm');
-    if(form){
-      form.addEventListener('submit', function(ev){
-        ev.preventDefault();
-        const fd = new FormData(form);
-        const name = fd.get('name');
-        const email = fd.get('email');
-        const message = fd.get('message');
-        const mailto = `mailto:${user.email}?subject=${encodeURIComponent('Contact from '+name)}&body=${encodeURIComponent(message + '\n\nFrom: '+name+' ('+email+')')}`;
-        window.location.href = mailto;
-      });
-    }
+function closeMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.classList.remove('active');
+}
 
-    // smooth scroll for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const href = a.getAttribute('href');
-        if(href.length>1 && document.querySelector(href)){
-          e.preventDefault();
-          document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+// Intersection Observer for scroll animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
         }
-      });
     });
-  }
+}, observerOptions);
 
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
-  else render();
-})();
+// Observe all elements that should animate on scroll
+document.addEventListener('DOMContentLoaded', () => {
+    // Add hidden class to elements that should animate
+    const animatedElements = document.querySelectorAll('.section-header, .about-text, .highlights-grid, .skill-card, .project-card, .contact-grid, .contact-cta');
+    
+    animatedElements.forEach(el => {
+        el.classList.add('hidden');
+        observer.observe(el);
+    });
+    
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+});
+
+// Parallax effect for hero section
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const heroContent = document.querySelector('.hero-content');
+    
+    if (heroContent && scrolled < window.innerHeight) {
+        heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+        heroContent.style.opacity = 1 - (scrolled / 500);
+    }
+});
+
+// Add hover effect to cards
+document.querySelectorAll('.highlight-card, .skill-card, .project-card, .contact-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = '';
+    });
+});
+
+// Typing effect for hero title (optional enhancement)
+function typeWriter(element, text, speed = 100) {
+    let i = 0;
+    element.innerHTML = '';
+    
+    function type() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    
+    type();
+}
+
+// Cursor follower effect (optional)
+let cursorFollower = null;
+
+function initCursorFollower() {
+    cursorFollower = document.createElement('div');
+    cursorFollower.style.cssText = `
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--color-primary);
+        border-radius: 50%;
+        pointer-events: none;
+        transition: transform 0.15s ease-out;
+        z-index: 9999;
+        display: none;
+    `;
+    document.body.appendChild(cursorFollower);
+    
+    document.addEventListener('mousemove', (e) => {
+        if (window.innerWidth > 768) {
+            cursorFollower.style.display = 'block';
+            cursorFollower.style.left = e.clientX - 10 + 'px';
+            cursorFollower.style.top = e.clientY - 10 + 'px';
+        }
+    });
+    
+    // Scale cursor on interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .btn');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            if (cursorFollower) {
+                cursorFollower.style.transform = 'scale(1.5)';
+                cursorFollower.style.background = 'var(--color-primary)';
+                cursorFollower.style.opacity = '0.2';
+            }
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            if (cursorFollower) {
+                cursorFollower.style.transform = 'scale(1)';
+                cursorFollower.style.background = 'transparent';
+                cursorFollower.style.opacity = '1';
+            }
+        });
+    });
+}
+
+// Initialize cursor follower on desktop
+if (window.innerWidth > 768) {
+    initCursorFollower();
+}
+
+// Add active state to navigation links based on scroll position
+window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let current = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (window.pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
+    });
+});
