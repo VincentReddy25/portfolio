@@ -189,3 +189,5 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// End of script.js
