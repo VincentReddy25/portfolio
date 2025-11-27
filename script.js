@@ -1,3 +1,47 @@
+// Theme Toggle
+function toggleTheme() {
+    const root = document.documentElement;
+    const currentTheme = root.getAttribute('data-theme') || 'dark';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    root.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    // Update icon visibility
+    const lightIcon = document.querySelector('.theme-icon-light');
+    const darkIcon = document.querySelector('.theme-icon-dark');
+    
+    if (newTheme === 'light') {
+        lightIcon.style.display = 'block';
+        darkIcon.style.display = 'none';
+    } else {
+        lightIcon.style.display = 'none';
+        darkIcon.style.display = 'block';
+    }
+    
+    // Reinitialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+}
+
+// Load saved theme on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    const lightIcon = document.querySelector('.theme-icon-light');
+    const darkIcon = document.querySelector('.theme-icon-dark');
+    
+    if (savedTheme === 'light') {
+        lightIcon.style.display = 'block';
+        darkIcon.style.display = 'none';
+    } else {
+        lightIcon.style.display = 'none';
+        darkIcon.style.display = 'block';
+    }
+});
+
 // Navbar scroll effect
 const navbar = document.getElementById('navbar');
 
@@ -189,5 +233,3 @@ window.addEventListener('scroll', () => {
         }
     });
 });
-
-// End of script.js
