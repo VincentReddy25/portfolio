@@ -1,237 +1,241 @@
+/* ========================================
+   1. INITIALIZE PORTFOLIO
+======================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+    initializeIcons();
+    initializeMobileMenu();
+    initializeHeader();
+    initializeScrollReveal();
+    initializeFooterYear();
+});
 
 
-// Theme Toggle
-function toggleTheme() {
-    const root = document.documentElement;
-    const currentTheme = root.getAttribute('data-theme') || 'dark';
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    root.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    
-    // Update icon visibility
-    const lightIcon = document.querySelector('.theme-icon-light');
-    const darkIcon = document.querySelector('.theme-icon-dark');
-    
-    if (newTheme === 'light') {
-        lightIcon.style.display = 'block';
-        darkIcon.style.display = 'none';
-    } else {
-        lightIcon.style.display = 'none';
-        darkIcon.style.display = 'block';
-    }
-    
-    // Reinitialize Lucide icons
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
+/* ========================================
+   2. INITIALIZE LUCIDE ICONS
+======================================== */
+
+function initializeIcons() {
+    if (window.lucide) {
+        window.lucide.createIcons();
     }
 }
 
-// Load saved theme on page load
-document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    
-    const lightIcon = document.querySelector('.theme-icon-light');
-    const darkIcon = document.querySelector('.theme-icon-dark');
-    
-    if (savedTheme === 'light') {
-        lightIcon.style.display = 'block';
-        darkIcon.style.display = 'none';
-    } else {
-        lightIcon.style.display = 'none';
-        darkIcon.style.display = 'block';
+
+/* ========================================
+   3. MOBILE NAVIGATION MENU
+======================================== */
+
+function initializeMobileMenu() {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navMenu = document.querySelector(".nav-menu");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    if (!menuToggle || !navMenu) {
+        return;
     }
-});
 
-// Navbar scroll effect
-const navbar = document.getElementById('navbar');
+    function openMenu() {
+        navMenu.classList.add("is-open");
+        menuToggle.setAttribute("aria-expanded", "true");
+        menuToggle.setAttribute("aria-label", "Close navigation menu");
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+        const icon = menuToggle.querySelector("svg");
+
+        if (icon) {
+            icon.replaceWith(createMenuIcon("x"));
+        }
     }
-});
 
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+    function closeMenu() {
+        navMenu.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+
+        const icon = menuToggle.querySelector("svg");
+
+        if (icon) {
+            icon.replaceWith(createMenuIcon("menu"));
+        }
+    }
+
+    function createMenuIcon(iconName) {
+        const icon = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "svg"
+        );
+
+        icon.setAttribute("width", "24");
+        icon.setAttribute("height", "24");
+        icon.setAttribute("viewBox", "0 0 24 24");
+        icon.setAttribute("fill", "none");
+        icon.setAttribute("stroke", "currentColor");
+        icon.setAttribute("stroke-width", "2");
+        icon.setAttribute("stroke-linecap", "round");
+        icon.setAttribute("stroke-linejoin", "round");
+        icon.setAttribute("aria-hidden", "true");
+
+        if (iconName === "x") {
+            const firstLine = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "path"
+            );
+
+            firstLine.setAttribute("d", "M18 6 6 18");
+
+            const secondLine = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "path"
+            );
+
+            secondLine.setAttribute("d", "m6 6 12 12");
+
+            icon.append(firstLine, secondLine);
+        } else {
+            const path = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "path"
+            );
+
+            path.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+
+            icon.appendChild(path);
+        }
+
+        return icon;
+    }
+
+    menuToggle.addEventListener("click", () => {
+        const isOpen =
+            menuToggle.getAttribute("aria-expanded") === "true";
+
+        if (isOpen) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    // Close the menu after selecting a navigation link.
+    navLinks.forEach((link) => {
+        link.addEventListener("click", closeMenu);
+    });
+
+    // Close the menu when clicking outside it.
+    document.addEventListener("click", (event) => {
+        const isOpen =
+            menuToggle.getAttribute("aria-expanded") === "true";
+
+        if (
+            isOpen &&
+            !navMenu.contains(event.target) &&
+            !menuToggle.contains(event.target)
+        ) {
+            closeMenu();
+        }
+    });
+
+    // Close the menu with the Escape key.
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeMenu();
+            menuToggle.focus();
+        }
+    });
+
+    // Close the mobile menu when returning to desktop layout.
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 700) {
+            closeMenu();
+        }
+    });
+}
+
+
+/* ========================================
+   4. HEADER SCROLL EFFECT
+======================================== */
+
+function initializeHeader() {
+    const header = document.querySelector(".site-header");
+
+    if (!header) {
+        return;
+    }
+
+    function updateHeader() {
+        if (window.scrollY > 20) {
+            header.classList.add("scrolled");
+        } else {
+            header.classList.remove("scrolled");
+        }
+    }
+
+    updateHeader();
+
+    window.addEventListener("scroll", updateHeader, {
+        passive: true
+    });
+}
+
+
+/* ========================================
+   5. SCROLL REVEAL ANIMATIONS
+======================================== */
+
+function initializeScrollReveal() {
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if (revealElements.length === 0) {
+        return;
+    }
+
+    // Respect the user's reduced-motion preference.
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (
+        prefersReducedMotion ||
+        !("IntersectionObserver" in window)
+    ) {
+        revealElements.forEach((element) => {
+            element.classList.add("is-visible");
+        });
+
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        (entries, currentObserver) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+
+                    currentObserver.unobserve(entry.target);
+                }
             });
+        },
+        {
+            threshold: 0.12,
+            rootMargin: "0px 0px -40px 0px"
         }
-    });
-});
+    );
 
-// Scroll to top
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+    revealElements.forEach((element) => {
+        observer.observe(element);
     });
 }
 
-// Mobile menu toggle
-function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenu.classList.toggle('active');
-}
 
-function closeMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenu.classList.remove('active');
-}
+/* ========================================
+   6. DYNAMIC FOOTER YEAR
+======================================== */
 
-// Intersection Observer for scroll animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+function initializeFooterYear() {
+    const yearElement = document.getElementById("year");
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// Observe all elements that should animate on scroll
-document.addEventListener('DOMContentLoaded', () => {
-    // Add hidden class to elements that should animate
-    const animatedElements = document.querySelectorAll('.section-header, .about-text, .highlights-grid, .skill-card, .project-card, .contact-grid, .contact-cta');
-    
-    animatedElements.forEach(el => {
-        el.classList.add('hidden');
-        observer.observe(el);
-    });
-    
-    // Set current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-    
-    // Initialize Lucide icons
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
     }
-});
-
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroContent = document.querySelector('.hero-content');
-    
-    if (heroContent && scrolled < window.innerHeight) {
-        heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
-        heroContent.style.opacity = 1 - (scrolled / 500);
-    }
-});
-
-// Add hover effect to cards
-document.querySelectorAll('.highlight-card, .skill-card, .project-card, .contact-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-5px) scale(1.02)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = '';
-    });
-});
-
-// Typing effect for hero title (optional enhancement)
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
 }
-
-// Cursor follower effect (optional)
-let cursorFollower = null;
-
-function initCursorFollower() {
-    cursorFollower = document.createElement('div');
-    cursorFollower.style.cssText = `
-        position: fixed;
-        width: 20px;
-        height: 20px;
-        border: 2px solid var(--color-primary);
-        border-radius: 50%;
-        pointer-events: none;
-        transition: transform 0.15s ease-out;
-        z-index: 9999;
-        display: none;
-    `;
-    document.body.appendChild(cursorFollower);
-    
-    document.addEventListener('mousemove', (e) => {
-        if (window.innerWidth > 768) {
-            cursorFollower.style.display = 'block';
-            cursorFollower.style.left = e.clientX - 10 + 'px';
-            cursorFollower.style.top = e.clientY - 10 + 'px';
-        }
-    });
-    
-    // Scale cursor on interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .btn');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            if (cursorFollower) {
-                cursorFollower.style.transform = 'scale(1.5)';
-                cursorFollower.style.background = 'var(--color-primary)';
-                cursorFollower.style.opacity = '0.2';
-            }
-        });
-        
-        el.addEventListener('mouseleave', () => {
-            if (cursorFollower) {
-                cursorFollower.style.transform = 'scale(1)';
-                cursorFollower.style.background = 'transparent';
-                cursorFollower.style.opacity = '1';
-            }
-        });
-    });
-}
-
-// Initialize cursor follower on desktop
-if (window.innerWidth > 768) {
-    initCursorFollower();
-}
-
-// Add active state to navigation links based on scroll position
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (window.pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
