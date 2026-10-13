@@ -1026,3 +1026,250 @@ svg {
     }
 
 }
+
+
+
+/* ========================================
+   BLACK & WHITE THEME
+======================================== */
+
+:root {
+    color-scheme: dark;
+
+    --bg: #000000;
+    --surface: #0a0a0a;
+    --surface-raised: #141414;
+
+    --text: #ffffff;
+    --muted: #a3a3a3;
+
+    --border: rgba(255, 255, 255, 0.14);
+
+    --accent: #ffffff;
+    --accent-hover: #d4d4d4;
+}
+
+/* Overall background */
+
+body {
+    background: #000000;
+    color: #ffffff;
+}
+
+/* Navigation */
+
+.site-header {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.site-header.scrolled {
+    background: rgba(0, 0, 0, 0.96);
+    border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+.nav-link-resume {
+    color: #ffffff;
+}
+
+.nav-link-resume:hover {
+    color: #bdbdbd;
+}
+
+/* Hero section */
+
+.hero {
+    background: #000000;
+}
+
+.hero-glow {
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.09),
+        rgba(255, 255, 255, 0.025) 40%,
+        transparent 70%
+    );
+}
+
+.hero-title span,
+.muted-text {
+    color: #8c8c8c;
+}
+
+.eyebrow {
+    color: #bdbdbd;
+}
+
+/* Buttons */
+
+.button-primary {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+.button-primary:hover {
+    background: #d4d4d4;
+    color: #000000;
+}
+
+.button-secondary {
+    background: transparent;
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.button-secondary:hover {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+/* Social links */
+
+.social-link:hover {
+    color: #ffffff;
+}
+
+/* Sections */
+
+.section-muted {
+    background: #080808;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.section-heading .eyebrow {
+    color: #a3a3a3;
+}
+
+/* About section */
+
+.about-panel {
+    background: linear-gradient(
+        145deg,
+        #121212,
+        #080808
+    );
+
+    border-color: var(--border);
+}
+
+.highlight-icon {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+/* Skills */
+
+.skill-card {
+    background: #0b0b0b;
+    border-color: var(--border);
+}
+
+.skill-card:hover {
+    background: #141414;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.tag {
+    background: #151515;
+    color: #e5e5e5;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Projects */
+
+.project-card {
+    background: #0b0b0b;
+    border-color: var(--border);
+}
+
+.project-card:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.project-featured {
+    background: radial-gradient(
+        ellipse at top right,
+        rgba(255, 255, 255, 0.06),
+        transparent 55%
+    ), #0b0b0b;
+}
+
+.project-topline {
+    color: #d4d4d4;
+}
+
+.project-tag {
+    background: #151515;
+    color: #e5e5e5;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Contact section */
+
+.contact-card {
+    background: #0b0b0b;
+    border-color: var(--border);
+}
+
+.contact-item svg {
+    color: #ffffff;
+}
+
+.contact-item a:hover {
+    color: #ffffff;
+}
+
+/* Footer */
+
+.site-footer {
+    background: #000000;
+    border-top-color: var(--border);
+}
+
+/* Mobile menu */
+
+.menu-toggle {
+    background: #101010;
+    color: #ffffff;
+    border-color: var(--border);
+}
+
+.nav-menu {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+/* Selection and focus */
+
+::selection {
+    background: #ffffff;
+    color: #000000;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline-color: #ffffff;
+}
+
+/* Scrollbar */
+
+* {
+    scrollbar-color: #555555 #080808;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080808;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444444;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #777777;
+}
